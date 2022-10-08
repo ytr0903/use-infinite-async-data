@@ -34,7 +34,7 @@ interface InfiniteAsyncDataOptions<
 /** response */
 interface InfiniteAsyncData<DataT = any, DataE = Error>
   extends AsyncData<DataT[], DataE> {
-  size: Ref<number>;
+  size: Readonly<Ref<number>>;
   setSize: (
     size: number | ((size: number) => number)
   ) => Promise<DataT[] | null>;
@@ -98,7 +98,7 @@ export const useInfiniteAsyncData = <
     refresh,
     execute,
     error,
-    size,
+    size: readonly(size),
     setSize,
   };
   const asyncDataPromise = Promise.resolve().then(() => asyncData);
