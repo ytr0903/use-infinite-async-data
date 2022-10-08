@@ -21,7 +21,9 @@ const fetchMore = () => {
 <template>
   <div class="box">
     <div class="box-card" v-for="(poke, i) in data" :key="i">
-      <img :alt="poke.name" :src="poke.image" class="image" />
+      <div class="image">
+        <img :alt="poke.name" :src="poke.image" />
+      </div>
       <h4 style="margin: 0">{{ poke.number }}. {{ poke.name }}</h4>
     </div>
     <Loader v-if="!pending && !isCompleted" @load="fetchMore" />
@@ -41,7 +43,12 @@ const fetchMore = () => {
 }
 
 .image {
-  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+
+  img {
+    width: 100%;
+  }
 }
 
 @keyframes skelton {
